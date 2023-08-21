@@ -1,8 +1,11 @@
 package com.example.githubclient;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Repo {
     private String id;
-    private String full_name;
+   @SerializedName("full_name")
+    private String fullName;
     private String name;
     private String description;
     private String url;
@@ -15,13 +18,6 @@ public class Repo {
         this.id = id;
     }
 
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
 
     public String getName() {
         return name;
