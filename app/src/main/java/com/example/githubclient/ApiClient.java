@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ApiClient {
 
-    @GET("https://api.github.com/repositories")
+    @GET("repositories")
     Call<List<Repo>> getAllRepos();
 }
