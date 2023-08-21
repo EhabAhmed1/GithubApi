@@ -22,14 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiClient apiClient = retrofit.create(ApiClient.class);
-
-        apiClient.getAllRepos().enqueue(new Callback<List<Repo>>() {
+        getApiClient().getAllRepos().enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
                 if (response.isSuccessful()) {
@@ -45,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 // todo display pop up or toast saying there is an error
             }
         });
+    }
 
+    private ApiClient getApiClient() {
+        return new Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build().create(ApiClient.class);
     }
 }
